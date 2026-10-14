@@ -11,7 +11,11 @@ permissions:
 
 jobs:
   validate:
-    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-14, macos-15-intel]
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     env:
       HOMEBREW_NO_AUTO_UPDATE: 1
@@ -31,3 +35,13 @@ jobs:
             token="$(basename "$cask" .rb)"
             brew audit --cask --skip-style --arch all "cyberdeliaAI/apps/$token"
           done
+      - name: Install and check Rockbox Library Manager
+        shell: bash
+        run: |
+          brew install --cask --no-ask --appdir="$RUNNER_TEMP/apps" cyberdeliaAI/apps/rockbox-library-manager
+          rockbox-library-manager --version
+          rockbox-library-manager artwork --help
+          rockbox-library-manager --bundle-smoke-test "$RUNNER_TEMP/cli-report.json"
+          "$RUNNER_TEMP/apps/Rockbox Library Manager.app/Contents/MacOS/Rockbox Library Manager" \
+            --bundle-smoke-test "$RUNNER_TEMP/gui-report.json"
+          brew uninstall --cask cyberdeliaAI/apps/rockbox-library-manager
