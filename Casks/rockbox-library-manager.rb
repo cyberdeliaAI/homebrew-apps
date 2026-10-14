@@ -1,3 +1,4 @@
+# Updated by Rockbox Library Manager's verified Homebrew release workflow.
 cask "rockbox-library-manager" do
   arch arm: "arm64", intel: "x64"
 
