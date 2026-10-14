@@ -63,6 +63,15 @@ If you installed the app manually, quit it and move the existing
 Do not use `--force` to overwrite it. Settings, credentials, the library index and
 thumbnails keep their existing separate locations.
 
+Stable Rockbox Library Manager releases update this cask automatically after
+the native release downloads are published. The application's **Update Homebrew
+tap** workflow downloads and verifies both macOS archives and their checksums,
+tests the candidate installation and GUI/CLI on both architectures, then commits
+the verified version and hashes here. It uses a dedicated tap deploy key only
+in the final publishing job; the private key is stored as an Actions secret in
+the application repository. Prereleases, downgrades and stale cask edits are
+refused. The existing Tagcast release process is unchanged.
+
 Quit the app before updating:
 
 ```sh
@@ -116,7 +125,14 @@ For Windows and Linux, use the standalone downloads for
 
 ## Maintain this tap
 
-After publishing a stable app release with both macOS archives:
+Rockbox Library Manager is handled by its automatic release workflow. For a
+retry, run **Update Homebrew tap** on `main` in the application repository;
+optionally enter the current latest stable tag. An unchanged manual run still
+tests installation and publishing access without creating a release or commit.
+See its [publishing guide](https://github.com/cyberdeliaAI/rockbox-library-manager/blob/main/docs/native-builds.md#automatic-homebrew-publishing)
+for verification, concurrent-edit protection and deploy-key rotation.
+
+For Tagcast or a manual recovery after publishing both macOS archives:
 
 1. Download both archives and their `.sha256` companion files from that release.
 2. Verify the actual downloads with `shasum -a 256` against the companion files.
