@@ -35,6 +35,33 @@ jobs:
             token="$(basename "$cask" .rb)"
             brew audit --cask --skip-style --arch all "cyberdeliaAI/apps/$token"
           done
+      - name: Install and check Tagcast
+        shell: bash
+        run: |
+          brew install --cask --no-ask --appdir="$RUNNER_TEMP/apps" cyberdeliaAI/apps/tagcast
+          tagcast-cli --version
+          tagcast-cli --help
+          export TAGCAST_HOME="$RUNNER_TEMP/tagcast-home"
+          export TAGCAST_ELECTRON_PROFILE="$RUNNER_TEMP/tagcast-profile"
+          export TAGCAST_ELECTRON_SMOKE_REPORT="$RUNNER_TEMP/tagcast-report.json"
+          export TAGCAST_PORT=0
+          mkdir -p "$TAGCAST_HOME" "$TAGCAST_ELECTRON_PROFILE"
+          printf '%s\n' '{"auto_updates":false,"auto_lookup":false}' > "$TAGCAST_HOME/config.json"
+          "$RUNNER_TEMP/apps/Tagcast.app/Contents/MacOS/Tagcast"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          from urllib.request import urlopen
+          report = json.loads(Path(os.environ["TAGCAST_ELECTRON_SMOKE_REPORT"]).read_text())
+          assert report["ok"] and report["sandbox"] and report["contextIsolation"]
+          try:
+              urlopen(report["origin"] + "/api/app", timeout=1)
+          except OSError:
+              pass
+          else:
+              raise RuntimeError("Tagcast left its test server running")
+          PY
+          brew uninstall --cask cyberdeliaAI/apps/tagcast
       - name: Install and check Rockbox Library Manager
         shell: bash
         run: |

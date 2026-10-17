@@ -17,9 +17,10 @@ its SHA-256 and installs `Tagcast.app` into Applications. Python is included;
 there are no additional runtime dependencies. The included `tagcast-cli` command
 is also linked into Homebrew's bin directory.
 
-Open **Tagcast** from Applications. Its local server starts and opens the browser
-by default. Untick **Open browser automatically** in the launcher when using
-Unite or another app wrapper. For terminal use:
+Open **Tagcast** from Applications. Since 0.60.0 it opens in its own Electron
+desktop window, using the same Python server and editor/player as the browser
+version. macOS 13 Ventura or newer is required. No separate browser, Python
+or Node.js installation is required. For terminal/browser use:
 
 ```sh
 tagcast-cli --open
@@ -90,8 +91,8 @@ and backups. No `zap` cleanup is defined.
 
 ## Update Tagcast
 
-Stop Tagcast before upgrading. Otherwise the new launcher can reuse the old
-server that is still running.
+Quit Tagcast before upgrading, or stop a terminal server with Ctrl+C. Electron
+reuses only the matching application version; an older server must be closed first.
 
 ```sh
 brew update

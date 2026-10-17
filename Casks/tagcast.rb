@@ -1,9 +1,9 @@
 cask "tagcast" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.50.0"
-  sha256 arm:   "6ce677a113d360046047fa6c5c9b0042a368775dc88a90d6a2d5c531302c1d16",
-         intel: "f04b07962be4337dcdb989fd947cf16981135b05c889ffc00a97eb94e74224c5"
+  version "0.60.0"
+  sha256 arm:   "0a5060b25fee33b03d873f9bf78cc20abbbe1d080fd1a73ade488b4768aa56fb",
+         intel: "760d5b3df0f59d77afafafcd60b523fa7788d5116cde33d1343091c3e44582c5"
 
   url "https://github.com/cyberdeliaAI/tagcast/releases/download/v#{version}/tagcast-#{version}-macos-#{arch}.zip"
   name "Tagcast"
@@ -15,13 +15,13 @@ cask "tagcast" do
     strategy :github_latest
   end
 
-  depends_on :macos
+  depends_on macos: :ventura
 
   app "Tagcast.app"
-  binary "#{appdir}/Tagcast.app/Contents/MacOS/tagcast-cli"
+  binary "#{appdir}/Tagcast.app/Contents/Resources/backend/tagcast-cli"
 
   caveats <<~EOS
-    Stop any running Tagcast before upgrading; a second copy reuses the existing server.
+    Quit Tagcast before upgrading; Electron reuses only a matching server version.
     Open Tagcast from Applications, or run tagcast-cli --open in a terminal.
     Settings and sign-in tokens are kept in ~/.tagcast and remain after uninstalling.
 
