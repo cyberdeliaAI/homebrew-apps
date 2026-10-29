@@ -1,9 +1,9 @@
 cask "ibfetch" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.3.0"
-  sha256 arm:   "57795b9fca016fd2a844de4775d14f904304499b8af9f7e3b2950845061bf193",
-         intel: "b7994d1030dc14fc6addcfe910189d036b123b7d72f4d4980ef37eb45bce8882"
+  version "1.3.1"
+  sha256 arm:   "ad22b0c8e4e51b223cea64192ed42a3c63685b3a544fa34a4f6e96de2bd1e36f",
+         intel: "07e40c1e0d059faf6ba3ea4f2ef19415f8e73258ff6b63b0886c57e8c01c0afd"
 
   url "https://github.com/cyberdeliaAI/ibfetch/releases/download/v#{version}/ibfetch-#{version}-macos-#{arch}.zip"
   name "ibfetch"
