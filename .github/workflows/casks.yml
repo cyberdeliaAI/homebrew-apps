@@ -28,7 +28,7 @@ jobs:
           mkdir -p "$tap_parent"
           ln -s "$GITHUB_WORKSPACE" "$tap_parent/homebrew-apps"
       - name: Check cask style
-        run: brew style Casks/*.rb
+        run: brew style Casks/*.rb Formula/*.rb
       - name: Audit both architectures
         run: |
           for cask in Casks/*.rb; do
@@ -72,3 +72,31 @@ jobs:
           "$RUNNER_TEMP/apps/Rockbox Library Manager.app/Contents/MacOS/Rockbox Library Manager" \
             --bundle-smoke-test "$RUNNER_TEMP/gui-report.json"
           brew uninstall --cask cyberdeliaAI/apps/rockbox-library-manager
+      - name: Install and check ibfetch desktop
+        shell: bash
+        run: |
+          export IBFETCH_HOME="$RUNNER_TEMP/ibfetch-home"
+          export IBFETCH_ELECTRON_PROFILE="$RUNNER_TEMP/ibfetch-profile"
+          export IBFETCH_SMOKE_REPORT="$RUNNER_TEMP/ibfetch-report.json"
+          mkdir -p "$IBFETCH_HOME"
+          printf '%s\n' '{"appearance":"dark","palette":"ocean"}' > "$IBFETCH_HOME/app-settings.json"
+          brew install --cask --no-ask --appdir="$RUNNER_TEMP/apps" cyberdeliaAI/apps/ibfetch
+          export IBFETCH_EXPECTED_VERSION="$(ibfetch-cli --version)"
+          ibfetch-cli get --help
+          "$RUNNER_TEMP/apps/ibfetch.app/Contents/MacOS/ibfetch"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          report = json.loads(Path(os.environ["IBFETCH_SMOKE_REPORT"]).read_text())
+          assert report["ok"] and report["isolated"]
+          assert "ibfetch " + report["version"] == os.environ["IBFETCH_EXPECTED_VERSION"]
+          PY
+          brew uninstall --cask cyberdeliaAI/apps/ibfetch
+      - name: Audit and test ibfetch formula
+        shell: bash
+        run: |
+          export IBFETCH_HOME="$RUNNER_TEMP/ibfetch-formula-home"
+          brew audit --formula --skip-style cyberdeliaAI/apps/ibfetch
+          brew install --formula cyberdeliaAI/apps/ibfetch
+          brew test cyberdeliaAI/apps/ibfetch
+          brew uninstall --formula cyberdeliaAI/apps/ibfetch
