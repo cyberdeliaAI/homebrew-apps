@@ -27,6 +27,15 @@ jobs:
           tap_parent="$(brew --repository)/Library/Taps/cyberdeliaai"
           mkdir -p "$tap_parent"
           ln -s "$GITHUB_WORKSPACE" "$tap_parent/homebrew-apps"
+      - name: Trust only the candidate definitions on this temporary runner
+        run: |
+          if brew help trust >/dev/null 2>&1; then
+            for cask in Casks/*.rb; do
+              token="$(basename "$cask" .rb)"
+              brew trust --cask "cyberdeliaAI/apps/$token"
+            done
+            brew trust --formula cyberdeliaAI/apps/ibfetch
+          fi
       - name: Check cask style
         run: brew style Casks/*.rb Formula/*.rb
       - name: Audit both architectures
