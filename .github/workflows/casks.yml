@@ -79,7 +79,7 @@ jobs:
           export IBFETCH_ELECTRON_PROFILE="$RUNNER_TEMP/ibfetch-profile"
           export IBFETCH_SMOKE_REPORT="$RUNNER_TEMP/ibfetch-report.json"
           mkdir -p "$IBFETCH_HOME"
-          printf '%s\n' '{"appearance":"dark","palette":"ocean"}' > "$IBFETCH_HOME/app-settings.json"
+          printf '%s\n' '{"appearance":"dark","palette":"ocean","auto_updates":false}' > "$IBFETCH_HOME/app-settings.json"
           brew install --cask --no-ask --appdir="$RUNNER_TEMP/apps" cyberdeliaAI/apps/ibfetch
           export IBFETCH_EXPECTED_VERSION="$(ibfetch-cli --version)"
           ibfetch-cli get --help
