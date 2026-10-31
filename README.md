@@ -26,9 +26,10 @@ or Node.js installation is required. For terminal/browser use:
 tagcast-cli --open
 ```
 
-Tagcast is not Developer ID signed or notarized. Homebrew installation does not
-remove macOS Gatekeeper checks. If the first launch is blocked, review the
-download and use **System Settings → Privacy & Security → Open Anyway**.
+Starting with 1.2.0, Tagcast's Apple Silicon and Intel downloads are Developer ID
+signed and notarized by Apple. The signature, stapled notarization ticket and
+Gatekeeper assessment are verified after extraction before publication. Homebrew
+checks the published archive's SHA-256 and retains macOS security checks.
 
 If you already installed Tagcast manually, stop it and move your existing
 `/Applications/Tagcast.app` aside before installing with Homebrew. Do not use
