@@ -3,6 +3,25 @@
 The official publisher-maintained Homebrew tap for Cyberdelia apps. This is a
 third-party tap, maintained independently of the Homebrew project.
 
+## Install Scene Director on macOS
+
+```sh
+brew install --cask cyberdeliaAI/apps/scene-director
+```
+
+Homebrew selects the Intel or Apple Silicon download from [Scene Director releases](https://github.com/cyberdeliaAI/Scene-Director/releases), verifies its SHA-256 and installs **Scene Director.app** into Applications. Python is bundled; macOS 13 Ventura or newer is required. Both Mac downloads are Developer ID signed and notarized by Apple.
+
+Scene Director writes image prompts using a local language-model server and prepares LoRA datasets with crop and caption tools. A compatible server such as LM Studio is required; image workflows need a vision-capable model.
+
+Quit the app before upgrading:
+
+```sh
+brew update
+brew upgrade --cask cyberdeliaAI/apps/scene-director
+```
+
+If you installed it manually, quit it and move the existing app aside before your first Homebrew installation. Do not use `--force` to overwrite it. Settings, prompts and saved dataset sessions live outside the app and survive upgrades and uninstalling.
+
 ## Install Tagcast on macOS
 
 With [Homebrew](https://brew.sh/) installed, run:

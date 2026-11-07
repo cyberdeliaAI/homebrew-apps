@@ -44,6 +44,29 @@ jobs:
             token="$(basename "$cask" .rb)"
             brew audit --cask --skip-style --arch all "cyberdeliaAI/apps/$token"
           done
+      - name: Install and check Scene Director
+        shell: bash
+        run: |
+          export SCENE_DIRECTOR_DESKTOP_DATA_DIR="$RUNNER_TEMP/scene-director-profile"
+          export SCENE_DIRECTOR_DESKTOP_SMOKE_REPORT="$RUNNER_TEMP/scene-director-report.json"
+          mkdir -p "$SCENE_DIRECTOR_DESKTOP_DATA_DIR"
+          printf '%s\n' '{"api_url":"http://127.0.0.1:9/v1","model":""}' > "$SCENE_DIRECTOR_DESKTOP_DATA_DIR/settings.json"
+          brew install --cask --no-ask --appdir="$RUNNER_TEMP/apps" cyberdeliaAI/apps/scene-director
+          codesign --verify --deep --strict "$RUNNER_TEMP/apps/Scene Director.app"
+          xcrun stapler validate "$RUNNER_TEMP/apps/Scene Director.app"
+          spctl --assess --type execute "$RUNNER_TEMP/apps/Scene Director.app"
+          "$RUNNER_TEMP/apps/Scene Director.app/Contents/MacOS/Scene Director"
+          python3 - <<'PYTHON'
+          import json, os, subprocess
+          from pathlib import Path
+          report = json.loads(Path(os.environ["SCENE_DIRECTOR_DESKTOP_SMOKE_REPORT"]).read_text())
+          assert report["ok"] and report["sandbox"] and report["contextIsolation"] and not report["nodeIntegration"]
+          cask = json.loads(subprocess.check_output(["brew", "info", "--cask", "--json=v2", "cyberdeliaAI/apps/scene-director"], text=True))["casks"][0]
+          assert report["version"] == cask["version"]
+          log = (Path(os.environ["SCENE_DIRECTOR_DESKTOP_DATA_DIR"])/"desktop.log").read_text()
+          assert "Local service exited (0)." in log
+          PYTHON
+          brew uninstall --cask cyberdeliaAI/apps/scene-director
       - name: Install and check Tagcast
         shell: bash
         run: |
