@@ -2,9 +2,9 @@
 cask "rockbox-library-manager" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.3.0"
-  sha256 arm:   "55eebc2f047c7f85ca23d28474178e2c475d8c5ebd8f55111b5fdcdf338d39ed",
-         intel: "b37724fff372579d11f45cb8750787dbde3c7339d94ea8535bc3356d0645e3bf"
+  version "1.4.0"
+  sha256 arm:   "7804a657ab7389f7ba3809c36f61d1f7897ed359525a7c075f3715a0c3489576",
+         intel: "bfbb171892578b062232163114fbea159cc17fb01817ff0a51f6b4e6187bebab"
 
   url "https://github.com/cyberdeliaAI/rockbox-library-manager/releases/download/v#{version}/rockbox-library-manager-v#{version}-macos-#{arch}.zip"
   name "Rockbox Library Manager"
