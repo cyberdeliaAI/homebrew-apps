@@ -75,9 +75,9 @@ rockbox-library-manager artwork --help
 FFmpeg is optional and separate for audio conversion; scanning and artwork work
 without it. Select the FFmpeg executable in the application's Settings when needed.
 
-The app is not Developer ID signed or notarized. Homebrew does not bypass
-Gatekeeper; if macOS blocks the first launch, review the download and use
-**System Settings → Privacy & Security → Open Anyway**.
+See the [native build guide](https://github.com/cyberdeliaAI/rockbox-library-manager/blob/main/docs/native-builds.md)
+for the signing status of the version you install. Homebrew does not bypass
+macOS Gatekeeper checks.
 
 If you installed the app manually, quit it and move the existing
 `/Applications/Rockbox Library Manager.app` aside before installing with Homebrew.

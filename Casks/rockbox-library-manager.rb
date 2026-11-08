@@ -27,8 +27,7 @@ cask "rockbox-library-manager" do
     Settings, credentials and the library index remain after uninstalling.
     FFmpeg is optional and separate; select its executable in Settings for audio conversion.
 
-    Rockbox Library Manager is not Developer ID signed or notarized. If macOS blocks
-    the first launch, use System Settings > Privacy & Security > Open Anyway after
-    reviewing the download.
+    macOS still performs its normal first-launch security checks.
+    See the release's signing details before approving a blocked download.
   EOS
 end
