@@ -22,6 +22,38 @@ brew upgrade --cask cyberdeliaAI/apps/scene-director
 
 If you installed it manually, quit it and move the existing app aside before your first Homebrew installation. Do not use `--force` to overwrite it. Settings, prompts and saved dataset sessions live outside the app and survive upgrades and uninstalling.
 
+## Install Cardwright on macOS
+
+```sh
+brew install --cask cyberdeliaAI/apps/cardwright
+```
+
+Homebrew selects the signed and notarized Apple Silicon or Intel archive from
+[Cardwright releases](https://github.com/cyberdeliaAI/Cardwright/releases), verifies
+its SHA-256 and installs **Cardwright.app** in Applications. macOS 13 Ventura or
+newer is required. Electron and the local server are bundled; no separate Node.js
+installation is needed.
+
+Cardwright edits Character Card V2 JSON/PNG cards, embedded lorebooks and AI drafts.
+It includes persona presets, configurable placeholders, avatar prompts and a
+review/apply workflow for turning pasted reference text into a concept.
+
+The desktop profile is separate from browser autosave. Transfer cards with
+JSON/PNG export/import and persona libraries with their JSON backup. The local
+desktop profile in `~/Library/Application Support/Cardwright` survives upgrades
+and uninstalling; no `zap` cleanup or Gatekeeper bypass is defined.
+
+Quit Cardwright before upgrading:
+
+```sh
+brew update
+brew upgrade --cask cyberdeliaAI/apps/cardwright
+```
+
+If a manually installed Cardwright app already occupies the destination, move it
+aside before the first Homebrew installation; do not force an overwrite. Windows
+and Linux downloads are available on the same release page.
+
 ## Install Tagcast on macOS
 
 With [Homebrew](https://brew.sh/) installed, run:
@@ -169,6 +201,7 @@ metadata limitations, NAS output, work folders and safe resume.
 | --- | --- | --- |
 | `ibfetch` | Selective iBroadcast downloader; desktop cask and Python/browser formula | macOS Apple Silicon/Intel; formula also Linux |
 | `tagcast` | Metadata editor and album player for iBroadcast | macOS, Apple Silicon and Intel |
+| `cardwright` | Character card editor, lorebooks and AI-assisted drafting | macOS, Apple Silicon and Intel |
 | `rockbox-library-manager` | Music library, artwork and tag manager for Rockbox and PodBox | macOS, Apple Silicon and Intel |
 
 For Windows and Linux, use the standalone downloads for
@@ -184,7 +217,7 @@ tests installation and publishing access without creating a release or commit.
 See its [publishing guide](https://github.com/cyberdeliaAI/rockbox-library-manager/blob/main/docs/native-builds.md#automatic-homebrew-publishing)
 for verification, concurrent-edit protection and deploy-key rotation.
 
-For Tagcast or a manual recovery after publishing both macOS archives:
+For Tagcast, Cardwright or a manual recovery after publishing both macOS archives:
 
 1. Download both archives and their `.sha256` companion files from that release.
 2. Verify the actual downloads with `shasum -a 256` against the companion files.
@@ -200,7 +233,8 @@ silently update its version or checksums, and it never disables Gatekeeper or
 removes quarantine attributes.
 
 Add other apps as separate files in `Casks/`, each with its own verified release
-downloads. Report application issues in the
+downloads. Report Cardwright issues in the
+[Cardwright repository](https://github.com/cyberdeliaAI/Cardwright/issues). Report other application issues in the
 [Tagcast repository](https://github.com/cyberdeliaAI/tagcast/issues), the
 [ibfetch repository](https://github.com/cyberdeliaAI/ibfetch/issues) or the
 [Rockbox Library Manager repository](https://github.com/cyberdeliaAI/rockbox-library-manager/issues).
@@ -208,7 +242,7 @@ downloads. Report application issues in the
 ## License
 
 The tap definitions and documentation are MIT licensed. Applications retain
-their own licenses: Tagcast and ibfetch are MIT licensed; Rockbox Library Manager is
+their own licenses: Tagcast, Cardwright and ibfetch are MIT licensed; Rockbox Library Manager is
 GPL-2.0-only. Application licenses and bundled dependency notices are included
 in their downloads.
 
