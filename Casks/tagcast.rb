@@ -1,9 +1,9 @@
 cask "tagcast" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.8.0"
-  sha256 arm:   "6c14d1db872484b34d049eaf5c7c0c672b285dc4d111c897ceffaa084e4c8f7b",
-         intel: "7fc252ff8af9c8a617c9ad2a20c420539bc3b0cef1f8df6e3d11f9b4f6167cc9"
+  version "1.9.0"
+  sha256 arm:   "0e249ed5c68f738bcbd688c68bf7b4f91c65b73f2c981c10e1367b1e91e71d51",
+         intel: "98be1492cbd5cd9b6bb9e338c3c382edb224446c756a82b2f28e51341f1c04a3"
 
   url "https://github.com/cyberdeliaAI/tagcast/releases/download/v#{version}/tagcast-#{version}-macos-#{arch}.zip"
   name "Tagcast"
