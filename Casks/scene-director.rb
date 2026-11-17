@@ -1,9 +1,9 @@
 cask "scene-director" do
   arch arm: "arm64", intel: "x64"
 
-  version "3.9.1"
-  sha256 arm:   "b91838e7f48f8510de566abdce46c20d26dcd5a600338feccd7bdc229edeb81d",
-         intel: "3b064f8244b29882c6b764fd3e187ec049f6012a6f1df31c4c53342efca07efd"
+  version "3.10.0"
+  sha256 arm:   "2b865581cfb62cdde90c0a0379624a153e7d95971bb0a71ad4e444187eaeec75",
+         intel: "457cddcaf0272d9f8d0f181ccf40af22364ba6948c11783e9976c03fd8d5fcf3"
 
   url "https://github.com/cyberdeliaAI/Scene-Director/releases/download/v#{version}/scene-director-#{version}-macos-#{arch}.zip"
   name "Scene Director"
