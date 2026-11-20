@@ -1,9 +1,9 @@
 cask "ibfetch" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.6.0"
-  sha256 arm:   "6c4c15e0225b677b62a76489596a5e6e5dba0a1ddd2b21c629af6765ade81b99",
-         intel: "d18b777d8f1cec65a54b8e62d080a596e4fda5f1d1519aacc7843cedcfeb1f48"
+  version "1.7.0"
+  sha256 arm:   "9ce30bdc886fe289bfc52c49de94191e2caf4920225aa8f2595382d728623609",
+         intel: "f414aa9e90090cd163f86ed373ab08e07017217bce9ee87fd3162fb9f2c90ad9"
 
   url "https://github.com/cyberdeliaAI/ibfetch/releases/download/v#{version}/ibfetch-#{version}-macos-#{arch}.zip"
   name "ibfetch"
@@ -24,6 +24,7 @@ cask "ibfetch" do
     Quit ibfetch before upgrading. Open ibfetch from Applications, or run ibfetch-cli.
     The bundled ibfetch-cli also provides the browser interface and terminal commands.
     Music, settings and sign-in records remain after uninstalling.
+    Update this Homebrew copy with brew upgrade --cask cyberdeliaAI/apps/ibfetch.
 
     The Mac downloads are Developer ID signed and notarized by Apple,
     with the notarization ticket attached.

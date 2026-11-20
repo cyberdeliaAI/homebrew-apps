@@ -1,8 +1,8 @@
 class Ibfetch < Formula
   desc "Download selected music from your iBroadcast library"
   homepage "https://github.com/cyberdeliaAI/ibfetch"
-  url "https://github.com/cyberdeliaAI/ibfetch/releases/download/v1.6.0/ibfetch-1.6.0-python.zip"
-  sha256 "ed90d353e8e11c8a648f20df1d06590daf05bffbbd3838734ef8a6f6249fdbad"
+  url "https://github.com/cyberdeliaAI/ibfetch/releases/download/v1.7.0/ibfetch-1.7.0-python.zip"
+  sha256 "21f55681385f4d725cc061a97828876885f71d18f53182f9c7c02b42faa9e7a8"
   license "MIT"
 
   depends_on "python@3.14"
