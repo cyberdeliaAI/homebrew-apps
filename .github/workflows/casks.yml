@@ -44,6 +44,18 @@ jobs:
             token="$(basename "$cask" .rb)"
             brew audit --cask --skip-style --arch all "cyberdeliaAI/apps/$token"
           done
+      - name: Install and check Tagcast Lite
+        shell: bash
+        run: |
+          token=cyberdeliaAI/apps/tagcast-lite
+          brew install --cask --no-ask --appdir="$RUNNER_TEMP/apps" "$token"
+          app="$RUNNER_TEMP/apps/Tagcast Lite.app"
+          codesign --verify --strict "$app"
+          xcrun stapler validate "$app"
+          spctl --assess --type execute "$app"
+          version=$(brew info --cask --json=v2 "$token" | python3 -c 'import json, sys; print(json.load(sys.stdin)["casks"][0]["version"])')
+          test "$("$app/Contents/MacOS/tagcast-player" --version)" = "tagcast-player $version"
+          brew uninstall --cask "$token"
       - name: Install and check Scene Director
         shell: bash
         run: |

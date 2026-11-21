@@ -87,6 +87,24 @@ If you already installed Tagcast manually, stop it and move your existing
 `--force` to overwrite an existing app. Settings and sign-in tokens are stored
 separately in `~/.tagcast/`, or the directory selected by `TAGCAST_HOME`.
 
+## Install Tagcast Lite on macOS
+
+```sh
+brew install --cask cyberdeliaAI/apps/tagcast-lite
+```
+
+Homebrew verifies the SHA-256 of the matching Apple Silicon or Intel archive and
+installs **Tagcast Lite.app** in Applications. Both downloads are Developer ID
+signed and notarized by Apple. See the [installation requirements](https://github.com/cyberdeliaAI/tagcast-lite#download-and-install)
+for macOS, Windows and Linux. If you already installed Tagcast Lite manually,
+quit it and move the existing app aside before installing with Homebrew.
+
+Quit the app before updating:
+
+```sh
+brew upgrade --cask cyberdeliaAI/apps/tagcast-lite
+```
+
 ## Install Rockbox Library Manager on macOS
 
 ```sh
@@ -201,11 +219,13 @@ metadata limitations, NAS output, work folders and safe resume.
 | --- | --- | --- |
 | `ibfetch` | Selective iBroadcast downloader; desktop cask and Python/browser formula | macOS Apple Silicon/Intel; formula also Linux |
 | `tagcast` | Metadata editor and album player for iBroadcast | macOS, Apple Silicon and Intel |
+| `tagcast-lite` | Lightweight, read-only iBroadcast player | macOS, Apple Silicon and Intel |
 | `cardwright` | Character card editor, lorebooks and AI-assisted drafting | macOS, Apple Silicon and Intel |
 | `rockbox-library-manager` | Music library, artwork and tag manager for Rockbox and PodBox | macOS, Apple Silicon and Intel |
 
 For Windows and Linux, use the standalone downloads for
-[Tagcast](https://github.com/cyberdeliaAI/tagcast/releases/latest) or
+[Tagcast](https://github.com/cyberdeliaAI/tagcast/releases/latest),
+[Tagcast Lite](https://github.com/cyberdeliaAI/tagcast-lite/releases/latest) or
 [Rockbox Library Manager](https://github.com/cyberdeliaAI/rockbox-library-manager/releases/latest).
 
 ## Maintain this tap
@@ -217,9 +237,10 @@ tests installation and publishing access without creating a release or commit.
 See its [publishing guide](https://github.com/cyberdeliaAI/rockbox-library-manager/blob/main/docs/native-builds.md#automatic-homebrew-publishing)
 for verification, concurrent-edit protection and deploy-key rotation.
 
-For Tagcast, Cardwright or a manual recovery after publishing both macOS archives:
+For Tagcast, Tagcast Lite, Cardwright or a manual recovery after publishing both macOS archives:
 
-1. Download both archives and their `.sha256` companion files from that release.
+1. Download both archives and their published checksums from that release.
+   Tagcast Lite publishes the hashes together in `SHA256SUMS.txt`.
 2. Verify the actual downloads with `shasum -a 256` against the companion files.
 3. Update `version` and both `sha256` values in the corresponding `Casks/<token>.rb`. Keep versioned
    download URLs; never replace the hashes with `:no_check`.
@@ -236,6 +257,7 @@ Add other apps as separate files in `Casks/`, each with its own verified release
 downloads. Report Cardwright issues in the
 [Cardwright repository](https://github.com/cyberdeliaAI/Cardwright/issues). Report other application issues in the
 [Tagcast repository](https://github.com/cyberdeliaAI/tagcast/issues), the
+[Tagcast Lite repository](https://github.com/cyberdeliaAI/tagcast-lite/issues), the
 [ibfetch repository](https://github.com/cyberdeliaAI/ibfetch/issues) or the
 [Rockbox Library Manager repository](https://github.com/cyberdeliaAI/rockbox-library-manager/issues).
 
