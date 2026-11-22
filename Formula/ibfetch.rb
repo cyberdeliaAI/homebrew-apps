@@ -1,15 +1,23 @@
 class Ibfetch < Formula
   desc "Download selected music from your iBroadcast library"
   homepage "https://github.com/cyberdeliaAI/ibfetch"
-  url "https://github.com/cyberdeliaAI/ibfetch/releases/download/v1.7.1/ibfetch-1.7.1-python.zip"
-  sha256 "d2512ddfe4ce5ad9beb37502cbc596e459975cf472a51fafc798fa1ce9e6e9c7"
+  url "https://github.com/cyberdeliaAI/ibfetch/archive/refs/tags/v1.8.0.tar.gz"
+  sha256 "e565eebee1c980b9cf01050f46a64f954ebab07774420fc477e7cd4c57f80fd6"
   license "MIT"
 
-  depends_on "python@3.14"
+  depends_on "rust" => :build
+
+  on_linux do
+    depends_on "pkgconf" => :build
+    depends_on "openssl@3"
+  end
+
+  def fetch
+    system "cargo", "fetch", *std_cargo_fetch_args
+  end
 
   def install
-    bin.install "ibfetch.py" => "ibfetch"
-    inreplace bin/"ibfetch", "#!/usr/bin/env python3", "#!#{formula_opt_bin("python@3.14")}/python3.14"
+    system "cargo", "install", *std_cargo_args, "--no-default-features"
   end
 
   test do

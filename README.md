@@ -191,24 +191,22 @@ For the standalone Mac app (Apple Silicon or Intel) and bundled `ibfetch-cli`:
 brew install --cask cyberdeliaAI/apps/ibfetch
 ```
 
-For the Python/browser and CLI version on macOS or Linux:
+For the Rust browser interface and CLI on macOS or Linux:
 
 ```sh
 brew install --formula cyberdeliaAI/apps/ibfetch
 ibfetch
 ```
 
-The formula installs Python and provides `ibfetch`. The cask includes Python and
-provides `ibfetch-cli`; both can coexist. Open **ibfetch** from Applications for
+The formula builds the browser and CLI executable `ibfetch` from source.
+The cask provides `ibfetch-cli`; both can coexist. Open **ibfetch** from Applications for
 the standalone window. Quit it before upgrading with the corresponding
 `brew upgrade --cask` or `brew upgrade --formula` command. Uninstall with the
 matching flags; music, settings and sign-in records are preserved.
 
-Mac builds are ad-hoc signed, without Developer ID signing or notarization.
-Homebrew does not bypass Gatekeeper. Review the download and, if needed, use
-**System Settings > Privacy & Security > Open Anyway** for this app.
+The Mac app is Developer ID signed and notarized by Apple.
 
-For Windows, Linux desktop or Python without Homebrew, use
+For Windows, Linux desktop or standalone Mac downloads, use
 [ibfetch releases](https://github.com/cyberdeliaAI/ibfetch/releases/latest).
 The [ibfetch README](https://github.com/cyberdeliaAI/ibfetch#readme) explains file
 metadata limitations, NAS output, work folders and safe resume.
@@ -217,7 +215,7 @@ metadata limitations, NAS output, work folders and safe resume.
 
 | Cask | Description | Platforms |
 | --- | --- | --- |
-| `ibfetch` | Selective iBroadcast downloader; desktop cask and Python/browser formula | macOS Apple Silicon/Intel; formula also Linux |
+| `ibfetch` | Selective iBroadcast downloader; desktop cask and Rust browser/CLI formula | macOS Apple Silicon/Intel; formula also Linux |
 | `tagcast` | Metadata editor and album player for iBroadcast | macOS, Apple Silicon and Intel |
 | `tagcast-lite` | Lightweight, read-only iBroadcast player | macOS, Apple Silicon and Intel |
 | `cardwright` | Character card editor, lorebooks and AI-assisted drafting | macOS, Apple Silicon and Intel |
@@ -270,7 +268,7 @@ in their downloads.
 
 ### Maintain ibfetch
 
-Publish and verify both Mac archives and the Python ZIP before updating
+Publish and verify both Mac archives and the tagged Rust source archive before updating
 `Casks/ibfetch.rb` and `Formula/ibfetch.rb`. Keep exact SHA-256 values and versioned
 URLs. Run `brew style Casks/ibfetch.rb Formula/ibfetch.rb`, audit both definitions,
 and test installation with temporary ibfetch settings. Update this tap after each
