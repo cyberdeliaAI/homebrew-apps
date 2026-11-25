@@ -1,8 +1,8 @@
 class Ibfetch < Formula
   desc "Download selected music from your iBroadcast library"
   homepage "https://github.com/cyberdeliaAI/ibfetch"
-  url "https://github.com/cyberdeliaAI/ibfetch/archive/refs/tags/v1.8.1.tar.gz"
-  sha256 "a4f8e59eb8f4ee80d5c637cfecb7a3b0a8648541421a640410bdbf4b2e3300d6"
+  url "https://github.com/cyberdeliaAI/ibfetch/archive/refs/tags/v1.8.2.tar.gz"
+  sha256 "db20eb3c1f3fefc16a8dcb3bea6560834b8966cd6bf41272b5ef2b8e7f84651d"
   license "MIT"
 
   depends_on "rust" => :build
