@@ -1,9 +1,9 @@
 cask "tagcast-lite" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.3.10"
-  sha256 arm:   "8e73a40c8b1e012041ab0a83b85fa9b0fa5081cc57422b44f66692f449b74fab",
-         intel: "49efcde1a219acdee4ba4c37ae728ebfddf88d7b9e4f79755e6e46710c407b95"
+  version "0.4.0"
+  sha256 arm:   "4f898c3dea96ab26db4be7fbd6d5c725fb7d649d2c79ca67a82218088e4b94d5",
+         intel: "a0193d58479bd0fa93b078d37ca482d534e67bd8568d10f0e79a5d4c93514696"
 
   url "https://github.com/cyberdeliaAI/tagcast-lite/releases/download/v#{version}/tagcast-lite-#{version}-macos-#{arch}.zip"
   name "Tagcast Lite"
